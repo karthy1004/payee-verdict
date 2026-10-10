@@ -272,7 +272,7 @@ policy: payout-default@1.0.0
 wall time: 2.06 s (read + verify + decide + evidence + write)
 ```
 
-`replay` on that log gave `identical verdicts: 10000/10000`, and `diff-policy` against `strict-v2` reported 923 verdicts changing, all WARN_CONFIRM → HOLD. The outcome mix reflects how [`bulk.py`](src/payee_verdict/bulk.py) generates name variants. **It says nothing about real-world match rates.**
+A second run of the same file took 1.64 s with identical counts. `replay` on that log gave `identical verdicts: 10000/10000`, and `diff-policy` against `strict-v2` reported 923 verdicts changing, all WARN_CONFIRM → HOLD. The outcome mix reflects how [`bulk.py`](src/payee_verdict/bulk.py) generates name variants. **It says nothing about real-world match rates.**
 
 What the tests pin down:
 
