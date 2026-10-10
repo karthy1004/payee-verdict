@@ -121,7 +121,7 @@ def cmd_verify(args: argparse.Namespace) -> int:
     log = _load_log(Path(args.evidence)) if args.evidence else EvidenceLog()
     v = verify_payout(payout, adapters, policy, log)
     if args.evidence:
-        Path(args.evidence).write_text(log.to_jsonl(), encoding="utf-8")
+        Path(args.evidence).write_text(log.to_jsonl(), encoding="utf-8", newline="\n")
     print(_verification_json(v) if args.format == "json" else _verification_text(v))
     return 0
 
@@ -141,7 +141,7 @@ def cmd_bulk(args: argparse.Namespace) -> int:
     log = EvidenceLog()
     summary = run_bulk(payouts, adapters, policy, log)
     if args.evidence:
-        Path(args.evidence).write_text(log.to_jsonl(), encoding="utf-8")
+        Path(args.evidence).write_text(log.to_jsonl(), encoding="utf-8", newline="\n")
     elapsed = time.perf_counter() - started
     print(render_summary(summary), end="")
     problems = log.verify()
@@ -152,7 +152,9 @@ def cmd_bulk(args: argparse.Namespace) -> int:
         f"{' + write' if args.evidence else ''})"
     )
     if args.summary_json:
-        Path(args.summary_json).write_text(summary.model_dump_json(indent=2), encoding="utf-8")
+        Path(args.summary_json).write_text(
+            summary.model_dump_json(indent=2), encoding="utf-8", newline="\n"
+        )
     return 0
 
 
@@ -163,8 +165,8 @@ def cmd_corpus(args: argparse.Namespace) -> int:
     if args.write:
         out = Path(args.results_dir)
         out.mkdir(parents=True, exist_ok=True)
-        (out / "latest.md").write_text(render_markdown(report), encoding="utf-8")
-        (out / "latest.json").write_text(corpus_json(report), encoding="utf-8")
+        (out / "latest.md").write_text(render_markdown(report), encoding="utf-8", newline="\n")
+        (out / "latest.json").write_text(corpus_json(report), encoding="utf-8", newline="\n")
         print(f"wrote {out / 'latest.md'} and {out / 'latest.json'}")
     return 0 if report.passed else 1
 
@@ -191,7 +193,7 @@ def cmd_diff_policy(args: argparse.Namespace) -> int:
     report = replay(log, load_policy(args.new_policy))
     text = render_diff(report)
     if args.out:
-        Path(args.out).write_text(text, encoding="utf-8")
+        Path(args.out).write_text(text, encoding="utf-8", newline="\n")
     print(text, end="")
     return 1 if report.chain_problems else 0
 
@@ -416,7 +418,7 @@ def _parser() -> argparse.ArgumentParser:
 def _utf8_stdout() -> None:
     if isinstance(sys.stdout, io.TextIOWrapper):  # pragma: no branch
         with contextlib.suppress(ValueError, OSError):
-            sys.stdout.reconfigure(encoding="utf-8")
+            sys.stdout.reconfigure(encoding="utf-8", newline="\n")
 
 
 def main(argv: Sequence[str] | None = None) -> int:

@@ -205,4 +205,4 @@ def write_csv(rows: list[dict[str, str]], path: str | Path) -> None:
     writer = csv.DictWriter(buf, fieldnames=CSV_FIELDS, lineterminator="\n")
     writer.writeheader()
     writer.writerows(rows)
-    Path(path).write_text(buf.getvalue(), encoding="utf-8")
+    Path(path).write_text(buf.getvalue(), encoding="utf-8", newline="\n")
