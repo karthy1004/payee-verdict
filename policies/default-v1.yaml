@@ -1,0 +1,60 @@
+# Illustrative requester-side payout policy. Not any bank's or scheme's policy.
+#
+# Fallbacks are checked first, then rules top to bottom (first match wins), then
+# default_verdict. Conditions inside one `when` are ANDed; a missing condition matches
+# anything. Amount bands: low < low_below <= medium < medium_below <= high.
+
+id: payout-default
+version: 1.0.0
+description: >
+  Proceed on a match, ask the payer to confirm a close match, hold anything that did not
+  match. Small payments may proceed with a warning when the check simply could not run.
+
+amount_bands:
+  EUR: {low_below: 1000, medium_below: 10000}
+  GBP: {low_below: 1000, medium_below: 10000}
+  INR: {low_below: 100000, medium_below: 1000000}
+  BRL: {low_below: 5000, medium_below: 50000}
+
+fallbacks:
+  - system: IN_NAME_LOOKUP
+    reason_code: LOOKUP_UNAVAILABLE
+    verdict: WARN_CONFIRM
+    note: Lookup not live for this bank or down; ask the payer to confirm the beneficiary.
+
+rules:
+  - id: R01-flagged-key-hold
+    when: {reason_code: [KEY_FLAGGED]}
+    verdict: HOLD
+    note: A payment key with a fraud flag is never paid automatically.
+
+  - id: R02-match-proceed
+    when: {outcome: [MATCH]}
+    verdict: PROCEED
+
+  - id: R03-close-match-bulk-high-hold
+    when: {outcome: [CLOSE_MATCH], bulk: true, amount_band: [high]}
+    verdict: HOLD
+    note: Nobody is looking at a bulk file line by line; large close matches wait for review.
+
+  - id: R04-close-match-confirm
+    when: {outcome: [CLOSE_MATCH]}
+    verdict: WARN_CONFIRM
+
+  - id: R05-no-match-hold
+    when: {outcome: [NO_MATCH]}
+    verdict: HOLD
+
+  - id: R06-not-possible-low-confirm
+    when:
+      outcome: [NOT_POSSIBLE]
+      amount_band: [low]
+      reason_code: [TIMEOUT, OPTED_OUT]
+    verdict: WARN_CONFIRM
+    note: The check could not run; small payments may go ahead after a warning.
+
+  - id: R07-not-possible-hold
+    when: {outcome: [NOT_POSSIBLE]}
+    verdict: HOLD
+
+default_verdict: HOLD

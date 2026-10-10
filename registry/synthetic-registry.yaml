@@ -1,0 +1,130 @@
+# Synthetic account registry for the simulated adapters.
+#
+# EVERYTHING HERE IS INVENTED. Names were made up for this project and are not meant to
+# identify anyone. Identifiers use deliberately fake formats:
+#   EU   IBAN-like strings containing "TEST" (they do not pass IBAN validation)
+#   UK   sort codes 99-00-xx
+#   IN   IFSC-like codes starting "TEST"
+#   PIX  keys on the reserved ".example" domain, or all-zero UUIDs
+#   LEI  "9999TESTPAYEE..." with valid ISO 17442 check digits, so the checksum code is exercised
+
+eu_vop:
+  - iban: DE00TEST0000000001
+    name: Müller GmbH
+    type: ENTITY
+    id_codes: {LEI: 9999TESTPAYEE0000195, VAT: DE-TEST-000001}
+  - iban: IE00TEST0000000002
+    name: Blue Fjord Bakery Ltd
+    type: ENTITY
+    id_codes: {LEI: 9999TESTPAYEE0000292}
+  - iban: FR00TEST0000000003
+    name: Ateliers Vernoux-Lacombe SARL
+    type: ENTITY
+    id_codes: {LEI: 9999TESTPAYEE0000389}
+  - iban: DE00TEST0000000004
+    name: Ilse Brandtvogel
+    type: PERSON
+  - iban: NL00TEST0000000005
+    name: Pieter-Jan van Oosterwijk
+    type: PERSON
+  - iban: ES00TEST0000000006
+    name: José Peregrino Saltz
+    type: PERSON
+  - iban: AT00TEST0000000007
+    name: Kranzhofer Holzbau GmbH & Co. KG
+    type: ENTITY
+    id_codes: {LEI: 9999TESTPAYEE0000777}
+    latency_ms: 7200          # a slow responder: always over the 5 s limit
+  - iban: IT00TEST0000000008
+    name: Orsolina Ventimare S.p.A.
+    type: ENTITY
+    id_codes: {LEI: 9999TESTPAYEE0000874}
+  - iban: DK00TEST0000000009
+    name: Søren Kjeldgaard-Holm
+    type: PERSON
+  - iban: FR00TEST0000000010
+    name: Northwind Logistique SAS
+    type: ENTITY
+    id_codes: {LEI: 9999TESTPAYEE0001068}
+    latency_ms: 4999          # just inside the limit
+  - iban: DE00TEST0000000011
+    name: Grünfeld Solar AG
+    type: ENTITY
+    id_codes: {LEI: 9999TESTPAYEE0001165}
+  - iban: DE00TEST0000000012
+    name: Grünfeld Solar GmbH
+    type: ENTITY
+    id_codes: {LEI: 9999TESTPAYEE0001262}
+
+uk_cop:
+  - sort_code: 99-00-01
+    account_number: "00000001"
+    name: Adaeze Okonkwo-Hale
+    type: PERSON
+  - sort_code: 99-00-02
+    account_number: "00000002"
+    name: Harrowgate Tile & Stone Ltd
+    type: ENTITY
+  - sort_code: 99-00-03
+    account_number: "00000003"
+    name: Rosalind Featherstonehaugh
+    type: PERSON
+  - sort_code: 99-00-04
+    account_number: "00000004"
+    name: Quillon Data Services Limited
+    type: ENTITY
+    opted_out: true
+  - sort_code: 99-00-05
+    account_number: "00000005"
+    name: Tobias Wrenfield
+    type: ENTITY              # a business account held in a sole trader's own name
+  - sort_code: 99-00-06
+    account_number: "00000006"
+    name: Marigold & Finch Bakers Ltd
+    type: ENTITY
+
+in_name_lookup:
+  - ifsc: TEST0000001
+    account_number: "000000000001"
+    name: Priyadarsini Venkatraman
+    type: PERSON
+  - ifsc: TEST0000002
+    account_number: "000000000002"
+    name: Kaveri Agro Exports Pvt Ltd
+    type: ENTITY
+  - ifsc: TEST0000003
+    account_number: "000000000003"
+    name: Anirudh Bhaskar Teerthan
+    type: PERSON
+  - ifsc: TEST0000004
+    account_number: "000000000004"
+    name: Sahyadri Loom Works Private Limited
+    type: ENTITY
+    lookup_supported: false   # bank not live for name lookup: the fallback applies
+  - ifsc: TEST0000005
+    account_number: "000000000005"
+    name: Meenakshi Raghavendran-Pillai
+    type: PERSON
+
+br_pix:
+  - key: loja.aurora@pix.example
+    key_type: EMAIL
+    name: Aurora Doces Artesanais Ltda
+    type: ENTITY
+  - key: "+55-11-90000-0001"
+    key_type: PHONE
+    name: Thaís Albuquerque Monteverde
+    type: PERSON
+  - key: 00000000-0000-4000-8000-000000000001
+    key_type: EVP
+    name: Ribeirão Verde Transportes S.A.
+    type: ENTITY
+  - key: 00000000-0000-4000-8000-000000000002
+    key_type: EVP
+    name: Caio Venâncio Delamare
+    type: PERSON
+    flagged: true             # carries a fraud flag: lookup returns no name
+  - key: pagamentos@cafe-serrano.example
+    key_type: EMAIL
+    name: Café Serrano Torrefação Ltda
+    type: ENTITY

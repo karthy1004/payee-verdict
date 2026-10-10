@@ -1,0 +1,46 @@
+# Illustrative stricter policy, used to demonstrate `diff-policy`.
+# Changes from payout-default@1.0.0:
+#   - India lookup unavailable: WARN_CONFIRM -> HOLD
+#   - Bulk close matches are held from the medium band upwards, not only high
+#   - A timeout or opt-out is never waved through, whatever the amount
+
+id: payout-default
+version: 2.0.0
+description: >
+  Stricter variant: no unverified payouts, and bulk close matches above the low band wait
+  for a human.
+
+amount_bands:
+  EUR: {low_below: 1000, medium_below: 10000}
+  GBP: {low_below: 1000, medium_below: 10000}
+  INR: {low_below: 100000, medium_below: 1000000}
+  BRL: {low_below: 5000, medium_below: 50000}
+
+fallbacks:
+  - system: IN_NAME_LOOKUP
+    reason_code: LOOKUP_UNAVAILABLE
+    verdict: HOLD
+    note: No unverified beneficiary names.
+
+rules:
+  - id: R01-flagged-key-hold
+    when: {reason_code: [KEY_FLAGGED]}
+    verdict: HOLD
+
+  - id: R02-match-proceed
+    when: {outcome: [MATCH]}
+    verdict: PROCEED
+
+  - id: R03-close-match-bulk-hold
+    when: {outcome: [CLOSE_MATCH], bulk: true, amount_band: [medium, high]}
+    verdict: HOLD
+
+  - id: R04-close-match-confirm
+    when: {outcome: [CLOSE_MATCH]}
+    verdict: WARN_CONFIRM
+
+  - id: R05-everything-else-hold
+    when: {outcome: [NO_MATCH, NOT_POSSIBLE]}
+    verdict: HOLD
+
+default_verdict: HOLD
