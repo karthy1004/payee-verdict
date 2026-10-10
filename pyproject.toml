@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "payee-verdict"
+version = "0.1.0"
+description = "Explainable payee-name verification across payment systems: traced name normalisation, a rule-based reference matcher, simulated EU VoP / UK CoP / India / PIX adapters, a versioned decision policy and a hash-chained evidence log with replay."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Karthik Bhumireddy" }]
+dependencies = [
+  "pydantic>=2.9",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.6", "mypy>=1.11", "types-PyYAML"]
+
+[project.scripts]
+payee-verdict = "payee_verdict.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/payee_verdict"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.coverage.run]
+branch = true
+source = ["payee_verdict"]
+omit = ["*/payee_verdict/__main__.py"]  # 3 lines; exercised by a subprocess test
+
+[tool.coverage.report]
+exclude_lines = ["pragma: no cover", "if __name__ == .__main__.:"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"
+packages = ["payee_verdict"]

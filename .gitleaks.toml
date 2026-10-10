@@ -1,0 +1,11 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Synthetic test data only: fake IBAN-like strings, fake LEIs, all-zero PIX keys and generated sample payouts"
+paths = [
+  '''tests/.*\.py''',
+  '''corpus/.*''',
+  '''registry/synthetic-registry\.yaml''',
+  '''examples/payouts-sample\.csv''',
+]
