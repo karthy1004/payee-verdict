@@ -1,0 +1,1367 @@
+{
+  "corpus_version": 1,
+  "corpus_sha256": "4b3083a1d146bdb8385c2503876e447497ad1cb10bbec1a6de6d1d4563383e6a",
+  "matcher_version": "0.1.0",
+  "threshold": 0.9,
+  "total": 181,
+  "correct": 174,
+  "accuracy": 0.9613,
+  "unsafe_upgrades": 0,
+  "passed": true,
+  "categories": {
+    "exact": {
+      "total": 10,
+      "correct": 10,
+      "accuracy": 1.0
+    },
+    "diacritics": {
+      "total": 16,
+      "correct": 16,
+      "accuracy": 1.0
+    },
+    "legal_form": {
+      "total": 15,
+      "correct": 15,
+      "accuracy": 1.0
+    },
+    "legal_form_conflict": {
+      "total": 8,
+      "correct": 8,
+      "accuracy": 1.0
+    },
+    "reorder_person": {
+      "total": 12,
+      "correct": 12,
+      "accuracy": 1.0
+    },
+    "reorder_entity": {
+      "total": 6,
+      "correct": 6,
+      "accuracy": 1.0
+    },
+    "initials": {
+      "total": 13,
+      "correct": 13,
+      "accuracy": 1.0
+    },
+    "middle_name": {
+      "total": 9,
+      "correct": 9,
+      "accuracy": 1.0
+    },
+    "typo": {
+      "total": 15,
+      "correct": 15,
+      "accuracy": 1.0
+    },
+    "truncation": {
+      "total": 12,
+      "correct": 11,
+      "accuracy": 0.9167
+    },
+    "address_in_name": {
+      "total": 8,
+      "correct": 8,
+      "accuracy": 1.0
+    },
+    "honorific": {
+      "total": 8,
+      "correct": 8,
+      "accuracy": 1.0
+    },
+    "spacing_punctuation": {
+      "total": 10,
+      "correct": 10,
+      "accuracy": 1.0
+    },
+    "different_entity": {
+      "total": 15,
+      "correct": 14,
+      "accuracy": 0.9333
+    },
+    "different_person": {
+      "total": 14,
+      "correct": 14,
+      "accuracy": 1.0
+    },
+    "known_gap": {
+      "total": 6,
+      "correct": 1,
+      "accuracy": 0.1667
+    },
+    "unusable_input": {
+      "total": 4,
+      "correct": 4,
+      "accuracy": 1.0
+    }
+  },
+  "results": [
+    {
+      "id": "EX-01",
+      "category": "exact",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "EX-02",
+      "category": "exact",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "EX-03",
+      "category": "exact",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "EX-04",
+      "category": "exact",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "EX-05",
+      "category": "exact",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "EX-06",
+      "category": "exact",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "EX-07",
+      "category": "exact",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "EX-08",
+      "category": "exact",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "EX-09",
+      "category": "exact",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "EX-10",
+      "category": "exact",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "DI-01",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "DI-02",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "TRANSLITERATION_EQUIV"
+    },
+    {
+      "id": "DI-03",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "DI-04",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "DI-05",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "TRANSLITERATION_EQUIV"
+    },
+    {
+      "id": "DI-06",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "TRANSLITERATION_EQUIV"
+    },
+    {
+      "id": "DI-07",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "DI-08",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "DI-09",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "DI-10",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "DI-11",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "DI-12",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "DI-13",
+      "category": "diacritics",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "DI-14",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "DI-15",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "DI-16",
+      "category": "diacritics",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "LF-01",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LF-02",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LF-03",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LF-04",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "LF-05",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LF-06",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LF-07",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LF-08",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LF-09",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LF-10",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LF-11",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LF-12",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LF-13",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LF-14",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LF-15",
+      "category": "legal_form",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "LEGAL_FORM_EQUIV"
+    },
+    {
+      "id": "LC-01",
+      "category": "legal_form_conflict",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "LEGAL_FORM_CONFLICT"
+    },
+    {
+      "id": "LC-02",
+      "category": "legal_form_conflict",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "LEGAL_FORM_CONFLICT"
+    },
+    {
+      "id": "LC-03",
+      "category": "legal_form_conflict",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "LEGAL_FORM_CONFLICT"
+    },
+    {
+      "id": "LC-04",
+      "category": "legal_form_conflict",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "LEGAL_FORM_CONFLICT"
+    },
+    {
+      "id": "LC-05",
+      "category": "legal_form_conflict",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "LEGAL_FORM_CONFLICT"
+    },
+    {
+      "id": "LC-06",
+      "category": "legal_form_conflict",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "LEGAL_FORM_CONFLICT"
+    },
+    {
+      "id": "LC-07",
+      "category": "legal_form_conflict",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "LEGAL_FORM_CONFLICT"
+    },
+    {
+      "id": "LC-08",
+      "category": "legal_form_conflict",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "LEGAL_FORM_CONFLICT"
+    },
+    {
+      "id": "RP-01",
+      "category": "reorder_person",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RP-02",
+      "category": "reorder_person",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RP-03",
+      "category": "reorder_person",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RP-04",
+      "category": "reorder_person",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RP-05",
+      "category": "reorder_person",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RP-06",
+      "category": "reorder_person",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RP-07",
+      "category": "reorder_person",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RP-08",
+      "category": "reorder_person",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RP-09",
+      "category": "reorder_person",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RP-10",
+      "category": "reorder_person",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RP-11",
+      "category": "reorder_person",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RP-12",
+      "category": "reorder_person",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RE-01",
+      "category": "reorder_entity",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RE-02",
+      "category": "reorder_entity",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RE-03",
+      "category": "reorder_entity",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RE-04",
+      "category": "reorder_entity",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RE-05",
+      "category": "reorder_entity",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "RE-06",
+      "category": "reorder_entity",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TOKEN_REORDER"
+    },
+    {
+      "id": "IN-01",
+      "category": "initials",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "INITIALS"
+    },
+    {
+      "id": "IN-02",
+      "category": "initials",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "INITIALS"
+    },
+    {
+      "id": "IN-03",
+      "category": "initials",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "INITIALS"
+    },
+    {
+      "id": "IN-04",
+      "category": "initials",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "INITIALS"
+    },
+    {
+      "id": "IN-05",
+      "category": "initials",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "INITIALS"
+    },
+    {
+      "id": "IN-06",
+      "category": "initials",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "INITIALS"
+    },
+    {
+      "id": "IN-07",
+      "category": "initials",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "INITIALS"
+    },
+    {
+      "id": "IN-08",
+      "category": "initials",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "INITIALS"
+    },
+    {
+      "id": "IN-09",
+      "category": "initials",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "INITIALS"
+    },
+    {
+      "id": "IN-10",
+      "category": "initials",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "IN-11",
+      "category": "initials",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "INITIALS"
+    },
+    {
+      "id": "IN-12",
+      "category": "initials",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "INITIALS"
+    },
+    {
+      "id": "IN-13",
+      "category": "initials",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "MN-01",
+      "category": "middle_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "MISSING_MIDDLE_NAME"
+    },
+    {
+      "id": "MN-02",
+      "category": "middle_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "MISSING_MIDDLE_NAME"
+    },
+    {
+      "id": "MN-03",
+      "category": "middle_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "MISSING_MIDDLE_NAME"
+    },
+    {
+      "id": "MN-04",
+      "category": "middle_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "MISSING_MIDDLE_NAME"
+    },
+    {
+      "id": "MN-05",
+      "category": "middle_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "MISSING_MIDDLE_NAME"
+    },
+    {
+      "id": "MN-06",
+      "category": "middle_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "MISSING_MIDDLE_NAME"
+    },
+    {
+      "id": "MN-07",
+      "category": "middle_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "MISSING_MIDDLE_NAME"
+    },
+    {
+      "id": "MN-08",
+      "category": "middle_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "MISSING_MIDDLE_NAME"
+    },
+    {
+      "id": "MN-09",
+      "category": "middle_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "MISSING_MIDDLE_NAME"
+    },
+    {
+      "id": "TY-01",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TY-02",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TY-03",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TY-04",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TY-05",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TY-06",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TY-07",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "TY-08",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TY-09",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TY-10",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TY-11",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TY-12",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TY-13",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TY-14",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TY-15",
+      "category": "typo",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "TR-01",
+      "category": "truncation",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "TR-02",
+      "category": "truncation",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "TR-03",
+      "category": "truncation",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "TR-04",
+      "category": "truncation",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "TR-05",
+      "category": "truncation",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "TR-06",
+      "category": "truncation",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "TR-07",
+      "category": "truncation",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "TR-08",
+      "category": "truncation",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "TR-09",
+      "category": "truncation",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "TR-10",
+      "category": "truncation",
+      "expected": "CLOSE_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "TR-11",
+      "category": "truncation",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "TR-12",
+      "category": "truncation",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "AD-01",
+      "category": "address_in_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "ADDRESS_IN_NAME"
+    },
+    {
+      "id": "AD-02",
+      "category": "address_in_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "ADDRESS_IN_NAME"
+    },
+    {
+      "id": "AD-03",
+      "category": "address_in_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "ADDRESS_IN_NAME"
+    },
+    {
+      "id": "AD-04",
+      "category": "address_in_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "ADDRESS_IN_NAME"
+    },
+    {
+      "id": "AD-05",
+      "category": "address_in_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "ADDRESS_IN_NAME"
+    },
+    {
+      "id": "AD-06",
+      "category": "address_in_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "ADDRESS_IN_NAME"
+    },
+    {
+      "id": "AD-07",
+      "category": "address_in_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "ADDRESS_IN_NAME"
+    },
+    {
+      "id": "AD-08",
+      "category": "address_in_name",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "HO-01",
+      "category": "honorific",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "HO-02",
+      "category": "honorific",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "HO-03",
+      "category": "honorific",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "HO-04",
+      "category": "honorific",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "HO-05",
+      "category": "honorific",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "HO-06",
+      "category": "honorific",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "HO-07",
+      "category": "honorific",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "HO-08",
+      "category": "honorific",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "SP-01",
+      "category": "spacing_punctuation",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "SP-02",
+      "category": "spacing_punctuation",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "SP-03",
+      "category": "spacing_punctuation",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "SPACING_EQUIV"
+    },
+    {
+      "id": "SP-04",
+      "category": "spacing_punctuation",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "SP-05",
+      "category": "spacing_punctuation",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "SPACING_EQUIV"
+    },
+    {
+      "id": "SP-06",
+      "category": "spacing_punctuation",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "SP-07",
+      "category": "spacing_punctuation",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "SP-08",
+      "category": "spacing_punctuation",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "SP-09",
+      "category": "spacing_punctuation",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "EXACT_NORMALISED"
+    },
+    {
+      "id": "SP-10",
+      "category": "spacing_punctuation",
+      "expected": "MATCH",
+      "predicted": "MATCH",
+      "rule_id": "SPACING_EQUIV"
+    },
+    {
+      "id": "DE-01",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DE-02",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DE-03",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DE-04",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DE-05",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DE-06",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DE-07",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DE-08",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DE-09",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DE-10",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DE-11",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "TRUNCATION"
+    },
+    {
+      "id": "DE-12",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DE-13",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DE-14",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DE-15",
+      "category": "different_entity",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-01",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-02",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-03",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-04",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-05",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "NO_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-06",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-07",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-08",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-09",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-10",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-11",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-12",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-13",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "DP-14",
+      "category": "different_person",
+      "expected": "NO_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "NO_TOKEN_OVERLAP"
+    },
+    {
+      "id": "KG-01",
+      "category": "known_gap",
+      "expected": "CLOSE_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "KG-02",
+      "category": "known_gap",
+      "expected": "CLOSE_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "KG-03",
+      "category": "known_gap",
+      "expected": "CLOSE_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "KG-04",
+      "category": "known_gap",
+      "expected": "CLOSE_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "PARTIAL_TOKEN_OVERLAP"
+    },
+    {
+      "id": "KG-05",
+      "category": "known_gap",
+      "expected": "CLOSE_MATCH",
+      "predicted": "NO_MATCH",
+      "rule_id": "NO_TOKEN_OVERLAP"
+    },
+    {
+      "id": "KG-06",
+      "category": "known_gap",
+      "expected": "CLOSE_MATCH",
+      "predicted": "CLOSE_MATCH",
+      "rule_id": "EDIT_DISTANCE_CLOSE"
+    },
+    {
+      "id": "EM-01",
+      "category": "unusable_input",
+      "expected": "NOT_POSSIBLE",
+      "predicted": "NOT_POSSIBLE",
+      "rule_id": "EMPTY_NAME"
+    },
+    {
+      "id": "EM-02",
+      "category": "unusable_input",
+      "expected": "NOT_POSSIBLE",
+      "predicted": "NOT_POSSIBLE",
+      "rule_id": "EMPTY_NAME"
+    },
+    {
+      "id": "EM-03",
+      "category": "unusable_input",
+      "expected": "NOT_POSSIBLE",
+      "predicted": "NOT_POSSIBLE",
+      "rule_id": "EMPTY_NAME"
+    },
+    {
+      "id": "EM-04",
+      "category": "unusable_input",
+      "expected": "NOT_POSSIBLE",
+      "predicted": "NOT_POSSIBLE",
+      "rule_id": "EMPTY_NAME"
+    }
+  ]
+}

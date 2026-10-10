@@ -1,0 +1,233 @@
+# Conformance corpus for the reference matcher.
+#
+# Every name is invented for this project and is not meant to identify a real person or
+# company. Company-like names are fictional.
+#
+# `expected` is a hand-written judgement of what a careful responder SHOULD return. Labels
+# were not generated from matcher output and were not changed after the first run. They
+# were written by the same author as the matcher, so the accuracy figure measures
+# consistency with stated intent; it is not an independent benchmark. Category
+# `known_gap` holds cases the v0.1 heuristics are expected to get wrong (nicknames,
+# acronyms, reordered initials); they are reported, not hidden.
+#
+# Gates (checked by `python -m payee_verdict corpus`):
+#   overall accuracy >= threshold, and
+#   zero unsafe upgrades: a MATCH predicted where the expected outcome is anything else.
+
+version: 1
+threshold: 0.90
+cases:
+  # --- exact: case and whitespace only -------------------------------------------------
+  - {id: EX-01, category: exact, payee_type: ENTITY, requested: "Blue Fjord Bakery Ltd", actual: "Blue Fjord Bakery Ltd", expected: MATCH, rationale: "Identical strings."}
+  - {id: EX-02, category: exact, payee_type: ENTITY, requested: "BLUE FJORD BAKERY LTD", actual: "Blue Fjord Bakery Ltd", expected: MATCH, rationale: "Differs only in letter case."}
+  - {id: EX-03, category: exact, payee_type: PERSON, requested: "ilse brandtvogel", actual: "Ilse Brandtvogel", expected: MATCH, rationale: "Lower-case entry of the same name."}
+  - {id: EX-04, category: exact, payee_type: PERSON, requested: "  Ilse   Brandtvogel ", actual: "Ilse Brandtvogel", expected: MATCH, rationale: "Extra spaces only."}
+  - {id: EX-05, category: exact, payee_type: ENTITY, requested: "Harrowgate Tile & Stone Ltd", actual: "Harrowgate Tile & Stone Ltd", expected: MATCH, rationale: "Identical, with an ampersand."}
+  - {id: EX-06, category: exact, payee_type: PERSON, requested: "Priyadarsini Venkatraman", actual: "Priyadarsini Venkatraman", expected: MATCH, rationale: "Identical strings."}
+  - {id: EX-07, category: exact, payee_type: ENTITY, requested: "Kaveri Agro Exports Pvt Ltd", actual: "KAVERI AGRO EXPORTS PVT LTD", expected: MATCH, rationale: "Case only; register stores upper case."}
+  - {id: EX-08, category: exact, payee_type: PERSON, requested: "Thaís Albuquerque Monteverde", actual: "Thaís Albuquerque Monteverde", expected: MATCH, rationale: "Identical, accent on both sides."}
+  - {id: EX-09, category: exact, payee_type: ENTITY, requested: "Orsolina Ventimare S.p.A.", actual: "Orsolina Ventimare S.p.A.", expected: MATCH, rationale: "Identical, dotted legal form."}
+  - {id: EX-10, category: exact, payee_type: PERSON, requested: "Rosalind Featherstonehaugh", actual: "ROSALIND FEATHERSTONEHAUGH", expected: MATCH, rationale: "Case only."}
+
+  # --- diacritics and transliteration --------------------------------------------------
+  - {id: DI-01, category: diacritics, payee_type: ENTITY, requested: "Müller GmbH", actual: "MUELLER GMBH", expected: MATCH, rationale: "ü written as ue is the standard German transliteration."}
+  - {id: DI-02, category: diacritics, payee_type: ENTITY, requested: "Muller GmbH", actual: "Müller GmbH", expected: MATCH, rationale: "Umlaut simply dropped on a keyboard without it."}
+  - {id: DI-03, category: diacritics, payee_type: PERSON, requested: "Jose Peregrino Saltz", actual: "José Peregrino Saltz", expected: MATCH, rationale: "Acute accent dropped."}
+  - {id: DI-04, category: diacritics, payee_type: PERSON, requested: "Soeren Kjeldgaard-Holm", actual: "Søren Kjeldgaard-Holm", expected: MATCH, rationale: "ø written as oe."}
+  - {id: DI-05, category: diacritics, payee_type: PERSON, requested: "Soren Kjeldgaard-Holm", actual: "Søren Kjeldgaard-Holm", expected: MATCH, rationale: "ø written as plain o."}
+  - {id: DI-06, category: diacritics, payee_type: ENTITY, requested: "Grunfeld Solar AG", actual: "Grünfeld Solar AG", expected: MATCH, rationale: "Umlaut dropped."}
+  - {id: DI-07, category: diacritics, payee_type: ENTITY, requested: "Gruenfeld Solar AG", actual: "Grünfeld Solar AG", expected: MATCH, rationale: "Umlaut transliterated."}
+  - {id: DI-08, category: diacritics, payee_type: PERSON, requested: "Thais Albuquerque Monteverde", actual: "Thaís Albuquerque Monteverde", expected: MATCH, rationale: "Portuguese accent dropped."}
+  - {id: DI-09, category: diacritics, payee_type: ENTITY, requested: "Ribeirao Verde Transportes S.A.", actual: "Ribeirão Verde Transportes S.A.", expected: MATCH, rationale: "Tilde dropped."}
+  - {id: DI-10, category: diacritics, payee_type: ENTITY, requested: "Cafe Serrano Torrefacao Ltda", actual: "Café Serrano Torrefação Ltda", expected: MATCH, rationale: "Accent, cedilla and tilde dropped."}
+  - {id: DI-11, category: diacritics, payee_type: PERSON, requested: "Wendelin Straßberger", actual: "Wendelin Strassberger", expected: MATCH, rationale: "ß written as ss."}
+  - {id: DI-12, category: diacritics, payee_type: PERSON, requested: "Caio Venancio Delamare", actual: "Caio Venâncio Delamare", expected: MATCH, rationale: "Circumflex dropped."}
+  - {id: DI-13, category: diacritics, payee_type: PERSON, requested: "Ingrid Mueller-Haslach", actual: "Ingrid Muller-Haslach", expected: CLOSE_MATCH, rationale: "Register has no umlaut; ue vs u cannot be proven to be the same spelling."}
+  - {id: DI-14, category: diacritics, payee_type: PERSON, requested: "Aase Lindqvaern", actual: "Åse Lindqværn", expected: MATCH, rationale: "å as aa and æ as ae."}
+  - {id: DI-15, category: diacritics, payee_type: ENTITY, requested: "Bäckerei Hölzl KG", actual: "Baeckerei Hoelzl KG", expected: MATCH, rationale: "Register stores the transliterated form."}
+  - {id: DI-16, category: diacritics, payee_type: PERSON, requested: "Ilona Szép-Vásárhelyi", actual: "Ilona Szep-Vasarhelyi", expected: MATCH, rationale: "Hungarian accents dropped in the register."}
+
+  # --- legal form spelled differently or omitted ---------------------------------------
+  - {id: LF-01, category: legal_form, payee_type: ENTITY, requested: "Blue Fjord Bakery Limited", actual: "Blue Fjord Bakery Ltd", expected: MATCH, rationale: "Limited and Ltd are the same form."}
+  - {id: LF-02, category: legal_form, payee_type: ENTITY, requested: "Blue Fjord Bakery", actual: "Blue Fjord Bakery Ltd", expected: MATCH, rationale: "Legal form omitted by the payer."}
+  - {id: LF-03, category: legal_form, payee_type: ENTITY, requested: "Kaveri Agro Exports Private Limited", actual: "Kaveri Agro Exports Pvt Ltd", expected: MATCH, rationale: "Private Limited abbreviated."}
+  - {id: LF-04, category: legal_form, payee_type: ENTITY, requested: "Kaveri Agro Exports Pvt. Ltd.", actual: "Kaveri Agro Exports Pvt Ltd", expected: MATCH, rationale: "Dots only."}
+  - {id: LF-05, category: legal_form, payee_type: ENTITY, requested: "Ateliers Vernoux-Lacombe S.A.R.L.", actual: "Ateliers Vernoux-Lacombe SARL", expected: MATCH, rationale: "Dotted SARL."}
+  - {id: LF-06, category: legal_form, payee_type: ENTITY, requested: "Orsolina Ventimare SpA", actual: "Orsolina Ventimare S.p.A.", expected: MATCH, rationale: "SpA with and without dots."}
+  - {id: LF-07, category: legal_form, payee_type: ENTITY, requested: "Aurora Doces Artesanais Limitada", actual: "Aurora Doces Artesanais Ltda", expected: MATCH, rationale: "Limitada abbreviated."}
+  - {id: LF-08, category: legal_form, payee_type: ENTITY, requested: "Kranzhofer Holzbau GmbH & Co. KG", actual: "Kranzhofer Holzbau GmbH Co KG", expected: MATCH, rationale: "Ampersand and dot missing in a compound form."}
+  - {id: LF-09, category: legal_form, payee_type: ENTITY, requested: "Tamsworth Pewter Public Limited Company", actual: "Tamsworth Pewter PLC", expected: MATCH, rationale: "PLC spelled out."}
+  - {id: LF-10, category: legal_form, payee_type: ENTITY, requested: "Ostrander Valve Incorporated", actual: "Ostrander Valve Inc.", expected: MATCH, rationale: "Inc spelled out."}
+  - {id: LF-11, category: legal_form, payee_type: ENTITY, requested: "Quillon Data Services Ltd", actual: "Quillon Data Services Limited", expected: MATCH, rationale: "Ltd vs Limited, other direction."}
+  - {id: LF-12, category: legal_form, payee_type: ENTITY, requested: "Vellacourt Analytics LLC", actual: "Vellacourt Analytics L.L.C.", expected: MATCH, rationale: "Dotted LLC."}
+  - {id: LF-13, category: legal_form, payee_type: ENTITY, requested: "Marigold and Finch Bakers Limited", actual: "Marigold & Finch Bakers Ltd", expected: MATCH, rationale: "and vs & plus Limited vs Ltd."}
+  - {id: LF-14, category: legal_form, payee_type: ENTITY, requested: "Duinveld Tuinbouw B.V.", actual: "Duinveld Tuinbouw BV", expected: MATCH, rationale: "Dotted BV."}
+  - {id: LF-15, category: legal_form, payee_type: ENTITY, requested: "Lindenhof Kältetechnik Gesellschaft mit beschränkter Haftung", actual: "Lindenhof Kältetechnik GmbH", expected: MATCH, rationale: "GmbH spelled out in full."}
+
+  # --- two different legal forms -------------------------------------------------------
+  - {id: LC-01, category: legal_form_conflict, payee_type: ENTITY, requested: "Grünfeld Solar GmbH", actual: "Grünfeld Solar AG", expected: CLOSE_MATCH, rationale: "A GmbH and an AG with one name can be two group companies."}
+  - {id: LC-02, category: legal_form_conflict, payee_type: ENTITY, requested: "Kaveri Agro Exports Ltd", actual: "Kaveri Agro Exports Pvt Ltd", expected: CLOSE_MATCH, rationale: "Public and private limited are different company types."}
+  - {id: LC-03, category: legal_form_conflict, payee_type: ENTITY, requested: "Vellacourt Analytics Inc", actual: "Vellacourt Analytics LLC", expected: CLOSE_MATCH, rationale: "Inc and LLC are different entity types."}
+  - {id: LC-04, category: legal_form_conflict, payee_type: ENTITY, requested: "Duinveld Tuinbouw NV", actual: "Duinveld Tuinbouw BV", expected: CLOSE_MATCH, rationale: "NV and BV differ."}
+  - {id: LC-05, category: legal_form_conflict, payee_type: ENTITY, requested: "Ateliers Vernoux-Lacombe SA", actual: "Ateliers Vernoux-Lacombe SARL", expected: CLOSE_MATCH, rationale: "SA and SARL differ."}
+  - {id: LC-06, category: legal_form_conflict, payee_type: ENTITY, requested: "Tamsworth Pewter Ltd", actual: "Tamsworth Pewter PLC", expected: CLOSE_MATCH, rationale: "Ltd and PLC differ."}
+  - {id: LC-07, category: legal_form_conflict, payee_type: ENTITY, requested: "Lindenhof Kältetechnik KG", actual: "Lindenhof Kältetechnik GmbH", expected: CLOSE_MATCH, rationale: "KG and GmbH differ."}
+  - {id: LC-08, category: legal_form_conflict, payee_type: ENTITY, requested: "Orsolina Ventimare S.r.l.", actual: "Orsolina Ventimare S.p.A.", expected: CLOSE_MATCH, rationale: "Srl and SpA differ."}
+
+  # --- person name parts in a different order ------------------------------------------
+  - {id: RP-01, category: reorder_person, payee_type: PERSON, requested: "Okonkwo-Hale Adaeze", actual: "Adaeze Okonkwo-Hale", expected: CLOSE_MATCH, rationale: "Surname first; could be a different person, so show the name."}
+  - {id: RP-02, category: reorder_person, payee_type: PERSON, requested: "Brandtvogel Ilse", actual: "Ilse Brandtvogel", expected: CLOSE_MATCH, rationale: "Surname first."}
+  - {id: RP-03, category: reorder_person, payee_type: PERSON, requested: "Venkatraman Priyadarsini", actual: "Priyadarsini Venkatraman", expected: CLOSE_MATCH, rationale: "Name order conventions vary."}
+  - {id: RP-04, category: reorder_person, payee_type: PERSON, requested: "Saltz José Peregrino", actual: "José Peregrino Saltz", expected: CLOSE_MATCH, rationale: "Surname moved to front."}
+  - {id: RP-05, category: reorder_person, payee_type: PERSON, requested: "Featherstonehaugh Rosalind", actual: "Rosalind Featherstonehaugh", expected: CLOSE_MATCH, rationale: "Surname first."}
+  - {id: RP-06, category: reorder_person, payee_type: PERSON, requested: "Teerthan Anirudh Bhaskar", actual: "Anirudh Bhaskar Teerthan", expected: CLOSE_MATCH, rationale: "Family name first."}
+  - {id: RP-07, category: reorder_person, payee_type: PERSON, requested: "Monteverde Thaís Albuquerque", actual: "Thaís Albuquerque Monteverde", expected: CLOSE_MATCH, rationale: "Last surname first."}
+  - {id: RP-08, category: reorder_person, payee_type: PERSON, requested: "BRANDTVOGEL, Ilse", actual: "Ilse Brandtvogel", expected: CLOSE_MATCH, rationale: "Surname, comma, given name."}
+  - {id: RP-09, category: reorder_person, payee_type: PERSON, requested: "Delamare Caio Venâncio", actual: "Caio Venâncio Delamare", expected: CLOSE_MATCH, rationale: "Surname first."}
+  - {id: RP-10, category: reorder_person, payee_type: PERSON, requested: "Wrenfield Tobias", actual: "Tobias Wrenfield", expected: CLOSE_MATCH, rationale: "Surname first."}
+  - {id: RP-11, category: reorder_person, payee_type: PERSON, requested: "Raghavendran-Pillai Meenakshi", actual: "Meenakshi Raghavendran-Pillai", expected: CLOSE_MATCH, rationale: "Surname first."}
+  - {id: RP-12, category: reorder_person, payee_type: PERSON, requested: "Oosterwijk Pieter-Jan van", actual: "Pieter-Jan van Oosterwijk", expected: CLOSE_MATCH, rationale: "Dutch directory order."}
+
+  # --- company words in a different order ----------------------------------------------
+  - {id: RE-01, category: reorder_entity, payee_type: ENTITY, requested: "Stone & Tile Harrowgate Ltd", actual: "Harrowgate Tile & Stone Ltd", expected: CLOSE_MATCH, rationale: "Same words, different order."}
+  - {id: RE-02, category: reorder_entity, payee_type: ENTITY, requested: "Finch & Marigold Bakers Ltd", actual: "Marigold & Finch Bakers Ltd", expected: CLOSE_MATCH, rationale: "Partner names swapped."}
+  - {id: RE-03, category: reorder_entity, payee_type: ENTITY, requested: "Exports Kaveri Agro Pvt Ltd", actual: "Kaveri Agro Exports Pvt Ltd", expected: CLOSE_MATCH, rationale: "Words reordered."}
+  - {id: RE-04, category: reorder_entity, payee_type: ENTITY, requested: "Bakery Blue Fjord Ltd", actual: "Blue Fjord Bakery Ltd", expected: CLOSE_MATCH, rationale: "Words reordered."}
+  - {id: RE-05, category: reorder_entity, payee_type: ENTITY, requested: "Transportes Ribeirão Verde S.A.", actual: "Ribeirão Verde Transportes S.A.", expected: CLOSE_MATCH, rationale: "Words reordered."}
+  - {id: RE-06, category: reorder_entity, payee_type: ENTITY, requested: "Solar Grünfeld AG", actual: "Grünfeld Solar AG", expected: CLOSE_MATCH, rationale: "Words reordered."}
+
+  # --- initials ------------------------------------------------------------------------
+  - {id: IN-01, category: initials, payee_type: PERSON, requested: "I Brandtvogel", actual: "Ilse Brandtvogel", expected: CLOSE_MATCH, rationale: "Given name as initial."}
+  - {id: IN-02, category: initials, payee_type: PERSON, requested: "I. Brandtvogel", actual: "Ilse Brandtvogel", expected: CLOSE_MATCH, rationale: "Dotted initial."}
+  - {id: IN-03, category: initials, payee_type: PERSON, requested: "A B Teerthan", actual: "Anirudh Bhaskar Teerthan", expected: CLOSE_MATCH, rationale: "Two initials."}
+  - {id: IN-04, category: initials, payee_type: PERSON, requested: "A. Teerthan", actual: "Anirudh Bhaskar Teerthan", expected: CLOSE_MATCH, rationale: "One initial, middle name omitted."}
+  - {id: IN-05, category: initials, payee_type: PERSON, requested: "Anirudh B Teerthan", actual: "Anirudh Bhaskar Teerthan", expected: CLOSE_MATCH, rationale: "Middle initial."}
+  - {id: IN-06, category: initials, payee_type: PERSON, requested: "R. Featherstonehaugh", actual: "Rosalind Featherstonehaugh", expected: CLOSE_MATCH, rationale: "Given name as initial."}
+  - {id: IN-07, category: initials, payee_type: PERSON, requested: "J P Saltz", actual: "José Peregrino Saltz", expected: CLOSE_MATCH, rationale: "Both given names as initials."}
+  - {id: IN-08, category: initials, payee_type: PERSON, requested: "T A Monteverde", actual: "Thaís Albuquerque Monteverde", expected: CLOSE_MATCH, rationale: "Initials for given name and first surname."}
+  - {id: IN-09, category: initials, payee_type: PERSON, requested: "P Venkatraman", actual: "Priyadarsini Venkatraman", expected: CLOSE_MATCH, rationale: "Given name as initial."}
+  - {id: IN-10, category: initials, payee_type: PERSON, requested: "K Brandtvogel", actual: "Ilse Brandtvogel", expected: NO_MATCH, rationale: "Initial K does not fit Ilse; surname alone is not enough."}
+  - {id: IN-11, category: initials, payee_type: PERSON, requested: "A Okonkwo-Hale", actual: "Adaeze Okonkwo-Hale", expected: CLOSE_MATCH, rationale: "Initial with a double-barrelled surname."}
+  - {id: IN-12, category: initials, payee_type: PERSON, requested: "M Raghavendran-Pillai", actual: "Meenakshi Raghavendran-Pillai", expected: CLOSE_MATCH, rationale: "Initial with a hyphenated surname."}
+  - {id: IN-13, category: initials, payee_type: PERSON, requested: "S Teerthan", actual: "Anirudh Bhaskar Teerthan", expected: NO_MATCH, rationale: "Initial S fits neither given name."}
+
+  # --- middle name or second surname missing -------------------------------------------
+  - {id: MN-01, category: middle_name, payee_type: PERSON, requested: "José Saltz", actual: "José Peregrino Saltz", expected: CLOSE_MATCH, rationale: "Middle name omitted."}
+  - {id: MN-02, category: middle_name, payee_type: PERSON, requested: "Anirudh Teerthan", actual: "Anirudh Bhaskar Teerthan", expected: CLOSE_MATCH, rationale: "Middle name omitted."}
+  - {id: MN-03, category: middle_name, payee_type: PERSON, requested: "Thaís Monteverde", actual: "Thaís Albuquerque Monteverde", expected: CLOSE_MATCH, rationale: "First surname omitted."}
+  - {id: MN-04, category: middle_name, payee_type: PERSON, requested: "Caio Delamare", actual: "Caio Venâncio Delamare", expected: CLOSE_MATCH, rationale: "Middle name omitted."}
+  - {id: MN-05, category: middle_name, payee_type: PERSON, requested: "Ilse Marlene Brandtvogel", actual: "Ilse Brandtvogel", expected: CLOSE_MATCH, rationale: "Payer added a middle name the register lacks."}
+  - {id: MN-06, category: middle_name, payee_type: PERSON, requested: "Rosalind Avery Featherstonehaugh", actual: "Rosalind Featherstonehaugh", expected: CLOSE_MATCH, rationale: "Extra middle name."}
+  - {id: MN-07, category: middle_name, payee_type: PERSON, requested: "Pieter van Oosterwijk", actual: "Pieter-Jan van Oosterwijk", expected: CLOSE_MATCH, rationale: "Second half of a double given name omitted."}
+  - {id: MN-08, category: middle_name, payee_type: PERSON, requested: "Priyadarsini K Venkatraman", actual: "Priyadarsini Venkatraman", expected: CLOSE_MATCH, rationale: "Extra middle initial."}
+  - {id: MN-09, category: middle_name, payee_type: PERSON, requested: "Adaeze Hale", actual: "Adaeze Okonkwo-Hale", expected: CLOSE_MATCH, rationale: "Half of a double-barrelled surname dropped."}
+
+  # --- typos ---------------------------------------------------------------------------
+  - {id: TY-01, category: typo, payee_type: PERSON, requested: "Ilse Brandtvogle", actual: "Ilse Brandtvogel", expected: CLOSE_MATCH, rationale: "Two letters transposed."}
+  - {id: TY-02, category: typo, payee_type: PERSON, requested: "Ilse Brantvogel", actual: "Ilse Brandtvogel", expected: CLOSE_MATCH, rationale: "One letter missing."}
+  - {id: TY-03, category: typo, payee_type: PERSON, requested: "Rosalind Featherstonhaugh", actual: "Rosalind Featherstonehaugh", expected: CLOSE_MATCH, rationale: "One letter missing in a long surname."}
+  - {id: TY-04, category: typo, payee_type: PERSON, requested: "Adaeze Okonkwo-Hall", actual: "Adaeze Okonkwo-Hale", expected: CLOSE_MATCH, rationale: "One letter wrong."}
+  - {id: TY-05, category: typo, payee_type: ENTITY, requested: "Blue Fiord Bakery Ltd", actual: "Blue Fjord Bakery Ltd", expected: CLOSE_MATCH, rationale: "Anglicised spelling."}
+  - {id: TY-06, category: typo, payee_type: ENTITY, requested: "Harrowgate Tiles & Stone Ltd", actual: "Harrowgate Tile & Stone Ltd", expected: CLOSE_MATCH, rationale: "Plural added."}
+  - {id: TY-07, category: typo, payee_type: ENTITY, requested: "Kaveri Agro Export Pvt Ltd", actual: "Kaveri Agro Exports Pvt Ltd", expected: CLOSE_MATCH, rationale: "Plural dropped."}
+  - {id: TY-08, category: typo, payee_type: ENTITY, requested: "Northwind Logistiqe SAS", actual: "Northwind Logistique SAS", expected: CLOSE_MATCH, rationale: "One letter missing."}
+  - {id: TY-09, category: typo, payee_type: PERSON, requested: "Priyadarshini Venkatraman", actual: "Priyadarsini Venkatraman", expected: CLOSE_MATCH, rationale: "Common spelling variant."}
+  - {id: TY-10, category: typo, payee_type: PERSON, requested: "Meenakshi Ragavendran-Pillai", actual: "Meenakshi Raghavendran-Pillai", expected: CLOSE_MATCH, rationale: "One letter missing."}
+  - {id: TY-11, category: typo, payee_type: ENTITY, requested: "Aurora Doces Artesanias Ltda", actual: "Aurora Doces Artesanais Ltda", expected: CLOSE_MATCH, rationale: "Two letters transposed."}
+  - {id: TY-12, category: typo, payee_type: ENTITY, requested: "Quilon Data Services Limited", actual: "Quillon Data Services Limited", expected: CLOSE_MATCH, rationale: "Doubled letter dropped."}
+  - {id: TY-13, category: typo, payee_type: PERSON, requested: "Tobais Wrenfield", actual: "Tobias Wrenfield", expected: CLOSE_MATCH, rationale: "Two letters transposed."}
+  - {id: TY-14, category: typo, payee_type: PERSON, requested: "Ilze Brandvogel", actual: "Ilse Brandtvogel", expected: CLOSE_MATCH, rationale: "Two small errors."}
+  - {id: TY-15, category: typo, payee_type: ENTITY, requested: "Marigold & Fitch Bakers Ltd", actual: "Marigold & Finch Bakers Ltd", expected: CLOSE_MATCH, rationale: "One letter wrong in a partner name."}
+
+  # --- truncation ----------------------------------------------------------------------
+  - {id: TR-01, category: truncation, payee_type: ENTITY, requested: "Northwind Logistics Internat", actual: "Northwind Logistics International Ltd", expected: CLOSE_MATCH, rationale: "Cut off by a field-length limit."}
+  - {id: TR-02, category: truncation, payee_type: PERSON, requested: "Rosalind Featherstoneh", actual: "Rosalind Featherstonehaugh", expected: CLOSE_MATCH, rationale: "Surname cut off."}
+  - {id: TR-03, category: truncation, payee_type: ENTITY, requested: "Sahyadri Loom Works Priv", actual: "Sahyadri Loom Works Private Limited", expected: CLOSE_MATCH, rationale: "Legal form cut off mid-word."}
+  - {id: TR-04, category: truncation, payee_type: ENTITY, requested: "Kranzhofer Holzbau GmbH & C", actual: "Kranzhofer Holzbau GmbH & Co. KG", expected: CLOSE_MATCH, rationale: "Compound legal form cut off."}
+  - {id: TR-05, category: truncation, payee_type: ENTITY, requested: "Ateliers Vernoux-Lacombe S", actual: "Ateliers Vernoux-Lacombe SARL", expected: CLOSE_MATCH, rationale: "Legal form cut to one letter."}
+  - {id: TR-06, category: truncation, payee_type: PERSON, requested: "Meenakshi Raghavendran-Pil", actual: "Meenakshi Raghavendran-Pillai", expected: CLOSE_MATCH, rationale: "Hyphenated surname cut off."}
+  - {id: TR-07, category: truncation, payee_type: ENTITY, requested: "Ribeirão Verde Transpor", actual: "Ribeirão Verde Transportes S.A.", expected: CLOSE_MATCH, rationale: "Cut off mid-word."}
+  - {id: TR-08, category: truncation, payee_type: PERSON, requested: "Anirudh Bhaskar Teert", actual: "Anirudh Bhaskar Teerthan", expected: CLOSE_MATCH, rationale: "Surname cut off."}
+  - {id: TR-09, category: truncation, payee_type: ENTITY, requested: "Café Serrano Torref", actual: "Café Serrano Torrefação Ltda", expected: CLOSE_MATCH, rationale: "Cut off mid-word."}
+  - {id: TR-10, category: truncation, payee_type: ENTITY, requested: "Lindenhof Kältetechnik Gesellschaft mit beschr", actual: "Lindenhof Kältetechnik GmbH", expected: CLOSE_MATCH, rationale: "Spelled-out legal form cut off."}
+  - {id: TR-11, category: truncation, payee_type: PERSON, requested: "José Peregrino", actual: "José Peregrino Saltz", expected: CLOSE_MATCH, rationale: "Surname omitted; Spanish names often drop one part."}
+  - {id: TR-12, category: truncation, payee_type: PERSON, requested: "Rosalind Featherstone", actual: "Rosalind Featherstonehaugh", expected: CLOSE_MATCH, rationale: "Could be truncation or another surname; showing the name lets the payer decide."}
+
+  # --- address typed into the name field -----------------------------------------------
+  - {id: AD-01, category: address_in_name, payee_type: PERSON, requested: "Ilse Brandtvogel, Hafenstraße 12, Bremen", actual: "Ilse Brandtvogel", expected: CLOSE_MATCH, rationale: "Address appended; name agrees once it is removed."}
+  - {id: AD-02, category: address_in_name, payee_type: ENTITY, requested: "Blue Fjord Bakery Ltd, 4 Quay Lane, Cork", actual: "Blue Fjord Bakery Ltd", expected: CLOSE_MATCH, rationale: "Address appended."}
+  - {id: AD-03, category: address_in_name, payee_type: PERSON, requested: "Rosalind Featherstonehaugh; 22 Mill Row", actual: "Rosalind Featherstonehaugh", expected: CLOSE_MATCH, rationale: "Semicolon-separated address."}
+  - {id: AD-04, category: address_in_name, payee_type: ENTITY, requested: "Kaveri Agro Exports Pvt Ltd, Plot 7, MIDC", actual: "Kaveri Agro Exports Pvt Ltd", expected: CLOSE_MATCH, rationale: "Industrial-estate address appended."}
+  - {id: AD-05, category: address_in_name, payee_type: PERSON, requested: "Thaís Albuquerque Monteverde, Rua das Flores 100", actual: "Thaís Albuquerque Monteverde", expected: CLOSE_MATCH, rationale: "Street address appended."}
+  - {id: AD-06, category: address_in_name, payee_type: ENTITY, requested: "Harrowgate Tile & Stone Ltd, Unit 3", actual: "Harrowgate Tile & Stone Ltd", expected: CLOSE_MATCH, rationale: "Unit number appended."}
+  - {id: AD-07, category: address_in_name, payee_type: PERSON, requested: "Adaeze Okonkwo-Hale, Flat 2B", actual: "Adaeze Okonkwo-Hale", expected: CLOSE_MATCH, rationale: "Flat number appended."}
+  - {id: AD-08, category: address_in_name, payee_type: ENTITY, requested: "Blue Fjord Bakery Ltd, Cork", actual: "Blue Fjord Bakery Ltd", expected: CLOSE_MATCH, rationale: "Town only, no digits; still not the registered name."}
+
+  # --- honorifics ----------------------------------------------------------------------
+  - {id: HO-01, category: honorific, payee_type: PERSON, requested: "Mr Tobias Wrenfield", actual: "Tobias Wrenfield", expected: MATCH, rationale: "Title is not part of the name."}
+  - {id: HO-02, category: honorific, payee_type: PERSON, requested: "Dr. Ilse Brandtvogel", actual: "Ilse Brandtvogel", expected: MATCH, rationale: "Academic title."}
+  - {id: HO-03, category: honorific, payee_type: PERSON, requested: "Mrs Rosalind Featherstonehaugh", actual: "Rosalind Featherstonehaugh", expected: MATCH, rationale: "Title."}
+  - {id: HO-04, category: honorific, payee_type: PERSON, requested: "Shri Anirudh Bhaskar Teerthan", actual: "Anirudh Bhaskar Teerthan", expected: MATCH, rationale: "Indian honorific."}
+  - {id: HO-05, category: honorific, payee_type: PERSON, requested: "Smt. Priyadarsini Venkatraman", actual: "Priyadarsini Venkatraman", expected: MATCH, rationale: "Indian honorific."}
+  - {id: HO-06, category: honorific, payee_type: PERSON, requested: "Herr Wendelin Straßberger", actual: "Wendelin Strassberger", expected: MATCH, rationale: "German title plus ß."}
+  - {id: HO-07, category: honorific, payee_type: PERSON, requested: "Sra. Thaís Albuquerque Monteverde", actual: "Thaís Albuquerque Monteverde", expected: MATCH, rationale: "Portuguese title."}
+  - {id: HO-08, category: honorific, payee_type: PERSON, requested: "Prof Dr Søren Kjeldgaard-Holm", actual: "Søren Kjeldgaard-Holm", expected: MATCH, rationale: "Two stacked titles."}
+
+  # --- spacing, hyphens and punctuation ------------------------------------------------
+  - {id: SP-01, category: spacing_punctuation, payee_type: PERSON, requested: "Adaeze Okonkwo Hale", actual: "Adaeze Okonkwo-Hale", expected: MATCH, rationale: "Hyphen typed as a space."}
+  - {id: SP-02, category: spacing_punctuation, payee_type: PERSON, requested: "Pieter Jan van Oosterwijk", actual: "Pieter-Jan van Oosterwijk", expected: MATCH, rationale: "Hyphen typed as a space."}
+  - {id: SP-03, category: spacing_punctuation, payee_type: PERSON, requested: "Pieter-Jan vanOosterwijk", actual: "Pieter-Jan van Oosterwijk", expected: MATCH, rationale: "Particle joined to surname."}
+  - {id: SP-04, category: spacing_punctuation, payee_type: ENTITY, requested: "Blue-Fjord Bakery Ltd", actual: "Blue Fjord Bakery Ltd", expected: MATCH, rationale: "Hyphen added."}
+  - {id: SP-05, category: spacing_punctuation, payee_type: ENTITY, requested: "BlueFjord Bakery Ltd", actual: "Blue Fjord Bakery Ltd", expected: MATCH, rationale: "Space dropped."}
+  - {id: SP-06, category: spacing_punctuation, payee_type: PERSON, requested: "Ciarán O'Dwyer-Maskell", actual: "Ciaran ODwyer Maskell", expected: MATCH, rationale: "Apostrophe, hyphen and accent."}
+  - {id: SP-07, category: spacing_punctuation, payee_type: ENTITY, requested: "Harrowgate Tile and Stone Ltd", actual: "Harrowgate Tile & Stone Ltd", expected: MATCH, rationale: "and vs &."}
+  - {id: SP-08, category: spacing_punctuation, payee_type: PERSON, requested: "Meenakshi Raghavendran Pillai", actual: "Meenakshi Raghavendran-Pillai", expected: MATCH, rationale: "Hyphen typed as a space."}
+  - {id: SP-09, category: spacing_punctuation, payee_type: ENTITY, requested: "Kaveri Agro-Exports Pvt Ltd", actual: "Kaveri Agro Exports Pvt Ltd", expected: MATCH, rationale: "Hyphen added."}
+  - {id: SP-10, category: spacing_punctuation, payee_type: PERSON, requested: "Ilse  Brandt-vogel", actual: "Ilse Brandtvogel", expected: MATCH, rationale: "Surname split by a hyphen."}
+
+  # --- a different company -------------------------------------------------------------
+  - {id: DE-01, category: different_entity, payee_type: ENTITY, requested: "Blue Fjord Brewery Ltd", actual: "Blue Fjord Bakery Ltd", expected: NO_MATCH, rationale: "Bakery vs brewery: a different business."}
+  - {id: DE-02, category: different_entity, payee_type: ENTITY, requested: "Harrowgate Roofing Ltd", actual: "Harrowgate Tile & Stone Ltd", expected: NO_MATCH, rationale: "Shares only a place name."}
+  - {id: DE-03, category: different_entity, payee_type: ENTITY, requested: "Kaveri Textiles Pvt Ltd", actual: "Kaveri Agro Exports Pvt Ltd", expected: NO_MATCH, rationale: "Shares only a river name."}
+  - {id: DE-04, category: different_entity, payee_type: ENTITY, requested: "Northwind Freight GmbH", actual: "Northwind Logistique SAS", expected: NO_MATCH, rationale: "Different business and country."}
+  - {id: DE-05, category: different_entity, payee_type: ENTITY, requested: "Aurora Pães Ltda", actual: "Aurora Doces Artesanais Ltda", expected: NO_MATCH, rationale: "Shares one common word."}
+  - {id: DE-06, category: different_entity, payee_type: ENTITY, requested: "Grünfeld Wind AG", actual: "Grünfeld Solar AG", expected: NO_MATCH, rationale: "Different business line."}
+  - {id: DE-07, category: different_entity, payee_type: ENTITY, requested: "Orsolina Marittima S.p.A.", actual: "Orsolina Ventimare S.p.A.", expected: NO_MATCH, rationale: "Different second word."}
+  - {id: DE-08, category: different_entity, payee_type: ENTITY, requested: "Ostrander Pumps Inc", actual: "Ostrander Valve Inc", expected: NO_MATCH, rationale: "Different product line."}
+  - {id: DE-09, category: different_entity, payee_type: ENTITY, requested: "Marigold Florists Ltd", actual: "Marigold & Finch Bakers Ltd", expected: NO_MATCH, rationale: "Shares one word."}
+  - {id: DE-10, category: different_entity, payee_type: ENTITY, requested: "Duinveld Bloemen BV", actual: "Duinveld Tuinbouw BV", expected: NO_MATCH, rationale: "Different business."}
+  - {id: DE-11, category: different_entity, payee_type: ENTITY, requested: "Tamsworth Pewter Holdings PLC", actual: "Tamsworth Pewter PLC", expected: NO_MATCH, rationale: "A holding company is a separate legal entity."}
+  - {id: DE-12, category: different_entity, payee_type: ENTITY, requested: "Ribeirão Preto Transportes S.A.", actual: "Ribeirão Verde Transportes S.A.", expected: NO_MATCH, rationale: "Different middle word; near the similarity threshold."}
+  - {id: DE-13, category: different_entity, payee_type: ENTITY, requested: "Vellacourt Robotics LLC", actual: "Vellacourt Analytics LLC", expected: NO_MATCH, rationale: "Different business."}
+  - {id: DE-14, category: different_entity, payee_type: ENTITY, requested: "Kranzhofer Metallbau GmbH & Co. KG", actual: "Kranzhofer Holzbau GmbH & Co. KG", expected: NO_MATCH, rationale: "Metal vs timber construction."}
+  - {id: DE-15, category: different_entity, payee_type: ENTITY, requested: "Sahyadri Silk Works Private Limited", actual: "Sahyadri Loom Works Private Limited", expected: NO_MATCH, rationale: "Different middle word."}
+
+  # --- a different person --------------------------------------------------------------
+  - {id: DP-01, category: different_person, payee_type: PERSON, requested: "Ilse Brandtmeier", actual: "Ilse Brandtvogel", expected: NO_MATCH, rationale: "Different surname sharing a prefix."}
+  - {id: DP-02, category: different_person, payee_type: PERSON, requested: "Ana Brandtvogel", actual: "Ilse Brandtvogel", expected: NO_MATCH, rationale: "Different given name, same surname."}
+  - {id: DP-03, category: different_person, payee_type: PERSON, requested: "Adaeze Okafor", actual: "Adaeze Okonkwo-Hale", expected: NO_MATCH, rationale: "Different surname."}
+  - {id: DP-04, category: different_person, payee_type: PERSON, requested: "Tobias Wrenford", actual: "Tobias Wrenfield", expected: NO_MATCH, rationale: "Different surname, three letters apart."}
+  - {id: DP-05, category: different_person, payee_type: PERSON, requested: "Priya Venkatesan", actual: "Priyadarsini Venkatraman", expected: NO_MATCH, rationale: "Different given name and surname."}
+  - {id: DP-06, category: different_person, payee_type: PERSON, requested: "Joana Saltz", actual: "José Peregrino Saltz", expected: NO_MATCH, rationale: "Different given name."}
+  - {id: DP-07, category: different_person, payee_type: PERSON, requested: "Thaís Monteiro", actual: "Thaís Albuquerque Monteverde", expected: NO_MATCH, rationale: "Different surname."}
+  - {id: DP-08, category: different_person, payee_type: PERSON, requested: "Caio Delacroix", actual: "Caio Venâncio Delamare", expected: NO_MATCH, rationale: "Different surname."}
+  - {id: DP-09, category: different_person, payee_type: PERSON, requested: "Meenakshi Sundaram", actual: "Meenakshi Raghavendran-Pillai", expected: NO_MATCH, rationale: "Different surname."}
+  - {id: DP-10, category: different_person, payee_type: PERSON, requested: "Søren Kjeldsen", actual: "Søren Kjeldgaard-Holm", expected: NO_MATCH, rationale: "Different surname."}
+  - {id: DP-11, category: different_person, payee_type: PERSON, requested: "Pieter-Jan Verhoeven", actual: "Pieter-Jan van Oosterwijk", expected: NO_MATCH, rationale: "Different surname."}
+  - {id: DP-12, category: different_person, payee_type: PERSON, requested: "Rosalind Ashcombe", actual: "Rosalind Featherstonehaugh", expected: NO_MATCH, rationale: "Different surname."}
+  - {id: DP-13, category: different_person, payee_type: PERSON, requested: "Ingrid Wrenfield", actual: "Tobias Wrenfield", expected: NO_MATCH, rationale: "Different given name."}
+  - {id: DP-14, category: different_person, payee_type: PERSON, requested: "Wendel Straub", actual: "Wendelin Strassberger", expected: NO_MATCH, rationale: "Different person."}
+
+  # --- known gaps in the v0.1 heuristics (expected to fail; reported, not hidden) -------
+  - {id: KG-01, category: known_gap, payee_type: PERSON, requested: "Bob Featherstonehaugh", actual: "Robert Featherstonehaugh", expected: CLOSE_MATCH, rationale: "Nickname; v0.1 has no nickname table."}
+  - {id: KG-02, category: known_gap, payee_type: PERSON, requested: "Liz Brandtvogel", actual: "Elisabeth Brandtvogel", expected: CLOSE_MATCH, rationale: "Nickname; v0.1 has no nickname table."}
+  - {id: KG-03, category: known_gap, payee_type: PERSON, requested: "Brandtvogel I.", actual: "Ilse Brandtvogel", expected: CLOSE_MATCH, rationale: "Reordered and initialled at once."}
+  - {id: KG-04, category: known_gap, payee_type: PERSON, requested: "Saltz, J.", actual: "José Peregrino Saltz", expected: CLOSE_MATCH, rationale: "Surname-first with one initial."}
+  - {id: KG-05, category: known_gap, payee_type: ENTITY, requested: "BFB Ltd", actual: "Blue Fjord Bakery Ltd", expected: CLOSE_MATCH, rationale: "Acronym of the registered name."}
+  - {id: KG-06, category: known_gap, payee_type: PERSON, requested: "Yevgeniya Shcherbakova-Lind", actual: "Evgenia Scherbakova-Lind", expected: CLOSE_MATCH, rationale: "Two romanisations of one Cyrillic name."}
+
+  # --- nothing usable to compare -------------------------------------------------------
+  - {id: EM-01, category: unusable_input, payee_type: PERSON, requested: "", actual: "Ilse Brandtvogel", expected: NOT_POSSIBLE, rationale: "Empty name."}
+  - {id: EM-02, category: unusable_input, payee_type: ENTITY, requested: "---", actual: "Blue Fjord Bakery Ltd", expected: NOT_POSSIBLE, rationale: "Punctuation only."}
+  - {id: EM-03, category: unusable_input, payee_type: PERSON, requested: "   ", actual: "Tobias Wrenfield", expected: NOT_POSSIBLE, rationale: "Whitespace only."}
+  - {id: EM-04, category: unusable_input, payee_type: ENTITY, requested: "&", actual: "Marigold & Finch Bakers Ltd", expected: NOT_POSSIBLE, rationale: "Only a connector word."}
