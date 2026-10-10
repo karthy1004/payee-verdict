@@ -250,7 +250,7 @@ python -m payee_verdict bulk payouts.csv --evidence evidence.jsonl
 python -m payee_verdict replay evidence.jsonl
 ```
 
-Last local run (Windows 11, Python 3.13.12): **143 passed**, **99% branch coverage** (1249 statements, 270 branches), ruff clean, mypy strict clean, corpus PASS. A clean clone with Python 3.11.9 also passed: 143 tests, mypy clean, demo runs. CI is configured to run the same on Ubuntu with Python 3.11 and 3.13, plus pip-audit, gitleaks and a link check; it has not run yet because the repository is not published.
+Last local run (Windows 11, Python 3.13.12): **143 passed**, **99% branch coverage** (1249 statements, 270 branches), ruff clean, mypy strict clean, corpus PASS. A clean clone with Python 3.11.9 also passed: 143 tests, mypy clean, demo runs. CI runs the same on Ubuntu with Python 3.11 and 3.13, plus pip-audit, gitleaks and a link check; the first run on GitHub (10 October 2026) passed all four jobs.
 
 Bulk run on 10,000 synthetic payouts (same machine, actual output):
 
