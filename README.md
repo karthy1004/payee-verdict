@@ -213,6 +213,19 @@ Reading this honestly:
 
 Full per-case results and the confusion matrix: [`corpus/results/latest.md`](corpus/results/latest.md).
 
+## Product notes: who it's for, how I'd measure it, what I cut
+
+| | |
+|---|---|
+| **Primary user** | A payout-operations lead at a cross-border platform paying out through several rails. Secondary users: the payer who sees the warning, the fraud team, and compliance. |
+| **The core trade-off** | A false MATCH can send money to the wrong person with no warning. A false warning adds friction, and payers who see too many learn to click through them. The corpus gate is asymmetric on purpose: **zero false MATCHes**, and only then accuracy. |
+| **North-star metric (proposed)** | Misdirected or authorised-push-payment fraud losses per 10,000 payouts, in basis points. It's a lagging metric, so it's paired with the leading ones below. |
+| **Leading metrics (proposed)** | Warning rate by rail and by bank. Payer abandonment after a CLOSE_MATCH or NO_MATCH. HOLD rate and manual-review time. NOT_POSSIBLE rate per rail (a reliability signal). Disagreement rate between this matcher and the bank's own answer where both exist. |
+| **Rollout I'd propose** | Shadow mode first: log verdicts, change nothing, and compare with what actually happened. Then WARN-only on one rail. HOLD only when the shadow data shows the false-HOLD cost is acceptable. |
+| **Deliberately cut from v0.1** | Real scheme connectivity, ML matching, nickname and transliteration tables, sanctions screening, FATF R16 checks. |
+
+> All metrics and the rollout are proposals. The data is synthetic and no real payouts were processed.
+
 ## Technology decisions
 
 | Choice | Why | Alternatives considered |
